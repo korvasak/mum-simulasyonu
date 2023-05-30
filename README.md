@@ -1,35 +1,27 @@
-# mum-simulasyonu
-This project offers a candle simulation for studying or reading a book. The burning time of the candle is chosen randomly and users can continue their work without knowing this time.
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Mum Simülasyonu</title>
-</head>
-<body>
-  <div id="mum"></div>
+import time
+import random
 
-  <script>
-    // Mumun bitme süresini rastgele belirleme
-    var bitmeSuresi = Math.floor(Math.random() * (180 - 30 + 1)) + 30; // 30-180 dakika arası
+def mum_simulasyonu():
+    # Rastgele mum bitiş süresini belirleme
+    bitis_suresi = random.randint(30, 180)  # 30 dakika ile 3 saat arası
+    
+    # Mum bitene kadar çalışma döngüsü
+    while bitis_suresi > 0:
+        # Mumun kalan süresini hesaplama
+        saatler = bitis_suresi // 60
+        dakikalar = bitis_suresi % 60
+        
+        # Kullanıcıya kalan süreyi gösterme
+        print(f"Mum bitene kadar kalan süre: {saatler} saat {dakikalar} dakika")
+        
+        # 1 dakika bekletme
+        time.sleep(60)
+        
+        # Mum bitiş süresini azaltma
+        bitis_suresi -= 1
+        
+    # Mum bittiğinde çalışma tamamlandı mesajı
+    print("Mum tamamen bitti. Ders çalışma veya kitap okuma tamamlandı.")
 
-    function mumuYak() {
-      var mumElementi = document.getElementById("mum");
-      var sure = bitmeSuresi;
-
-      // Mum azalma animasyonu
-      var azalmaHizi = 1000; // 1 saniyede 1 dakika azalma
-      var azalmaTimer = setInterval(function() {
-        sure--;
-        mumElementi.innerText = "Kalan Süre: " + sure + " dakika";
-
-        if (sure <= 0) {
-          clearInterval(azalmaTimer);
-          mumElementi.innerText = "Mum Bitti";
-        }
-      }, azalmaHizi);
-    }
-
-    mumuYak();
-  </script>
-</body>
-</html>
+# Mum simülasyonunu başlatma
+mum_simulasyonu()
